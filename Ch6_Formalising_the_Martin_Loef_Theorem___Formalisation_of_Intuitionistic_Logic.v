@@ -48,7 +48,7 @@ Inductive proposition :=
 
 Parameter Implication_Is_True : proposition -> proposition -> Prop.
 
-(** Now we define what constitutes a proof of a [proposition]. By using an inductively defined proposition the notion that these rules are the only possible ways to obtain a proof is captured. *)
+(** Now we define what constitutes a proof of a [proposition]. By using an inductively defined proposition, the notion that these rules are the only possible ways to obtain a proof is captured. *)
 
 Inductive Proof : proposition -> Prop :=
   | atom_ev : forall (A:Atoms), AtomValuation A = true -> Proof (Atom A)
@@ -68,7 +68,7 @@ Axiom implies_ev' : forall p q, Implication_Is_True p q <-> (exists (f: Proof p 
 
 (** %\newpage% *)
 (** -------------- *)
-(** In a similar way to with the bi-modal logic embedding, the definitions required to embed intuitionistic logic are now all defined. Only notation, lemmas and theorems are defined below and these do not alter what propositions are expressible and provable in this embedding of intuitionistic logic in Coq. *)
+(** In a similar way to the bi-modal logic embedding, the definitions required to embed intuitionistic logic are now all defined. Only notation, lemmas and theorems are defined below and these do not alter what propositions are expressible and provable in this embedding of intuitionistic logic in Coq. *)
 (** -------------- *)
 
 (** ** Notation *)
@@ -213,6 +213,6 @@ Qed.
 (** * Comments on this formalisation *)
 
 (** A key advantage of this formalisation is that it does not rely on axioms other than those fundamental to intuitionistic logic. The only two non-standard axioms are found in the definition of what constitutes a proof in the system. %\\%
-[K_ev] is essentially an axiom which states that %$$%[forall (p : proposition), Proof p -> (Proof (K p))].%$$%This potentially does not capture the notion of knowability properly. It is part of an inductive definition, so implicit in the axiom is that the _only_ way one can show that a proposition is knowable is by exhibiting a Coq proof for [Proof p]. It may be that there are other ways of knowing that are not captured by this axiom. For instance we may be able to know by analysing the axioms of intuitionistic logic that double negation elimination, [ ~ ~ q -> q], is not knowable yet we would not be able to prove [Proof ~ (K ( ~ ( ~ q) -> q))]. %\\%
+[K_ev] is essentially an axiom which states that %$$%[forall (p : proposition), Proof p -> (Proof (K p))].%$$%This potentially does not capture the notion of knowability properly. It is part of an inductive definition, so implicit in the axiom is that the _only_ way one can show that a proposition is knowable is by exhibiting a Coq proof for [Proof p]. It may be that there are other ways of knowing that are not captured by this axiom. For instance we may be able to know by analysing the axioms of intuitionistic logic that double negation elimination, [ ~ ~ q -> q], is not knowable, yet we would not be able to prove [Proof ~ (K ( ~ ( ~ q) -> q))]. %\\%
 The second non-standard axiom is that the only way to show that [Proof (A ⇒ B)] is true is to show that [(exists (f: Proof p -> Proof q), True )]. This can be simplified to [Proof p -> Proof q]. A possible concern with this axiom is it allows [Proof (A ⇒ B)] to be proven whenever the implication [Proof p -> Proof q] is true rather than when there is indeed a function that takes a proof of [p] and returns a proof of [q]. This means that alterations to the meta-language logic could sometimes filter down into the embedding of intuitionistic logic, potentially causing issues. %\\%
 Overall however, this formalisation does a good job at capturing certain elements from Martin-%\Loef{}%'s proof and is useful for gaining a deeper understanding of the Martin-%\Loef{}% Theorem. *)

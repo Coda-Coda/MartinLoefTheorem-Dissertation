@@ -5,15 +5,15 @@
 (** %\chapter{Formalising Modal Logics in Coq}% *)
 
 (** * Motivation and background *)
-(** The Martin-%\Loef{}% Theorem includes the notion of knowledge as well as the notion of possibility in key ways within it. Both possibility and knowledge have been modeled using modal logics for many years, and so it seemed likely that incorporating or adapting some of those techniques would be useful in formalising the Martin-%\Loef{}% theorem and its proof. *)
+(** The Martin-%\Loef{}% Theorem includes the notion of knowledge as well as the notion of possibility in key ways. Both possibility and knowledge have been modelled using modal logics for many years, and so it seemed likely that incorporating or adapting some of those techniques would be useful in formalising the Martin-%\Loef{}% theorem and its proof. *)
 
 (** ** The Benzmuller and Paleo paper *)
-(** The paper `Interacting with Modal Logics in the Coq Proof Assistant'%~\cite{benzmuller}% sets out a great way to embed modal logics in the Coq proof assistant. The approach they put forward in their paper is also extensible and so had the potential to be adapted as necessary when formalising the Martin-%\Loef{}% Theorem. Their work was very helpful. %\par%*)
+(** The paper `Interacting with Modal Logics in the Coq Proof Assistant'%~\cite{benzmuller}% sets out a useful way to embed modal logics in the Coq proof assistant. The approach they put forward in their paper is also extensible and so had the potential to be adapted as necessary when formalising the Martin-%\Loef{}% Theorem. Their work was very helpful. %\par%*)
 (** In their paper they state: %\emph{"the main contribution described in this paper - convenient techniques for leveraging a powerful proof assistant such as Coq for interactive reasoning for modal logics - may serve as a starting point for many interesting projects."} \cite[p.~2]{benzmuller}%.*)
 
 
 (** ** Bi-modal logic *)
-(** One of the approaches was to formalise the theorem in a bi-modal logic, representing knowability and possibility as modal operators. This approach is shown below, based almost entirly on the Coq code from the Benzmuller paper, with some minor adaptations for it to be bi-modal logic. *)
+(** One of the approaches was to formalise the theorem in a bi-modal logic, representing knowability and possibility as modal operators. This approach is shown below, based almost entirely on the Coq code from the Benzmuller paper, with some minor adaptations for it to be bi-modal logic. *)
 
 
 (** * Coq formalisation of modal logic *)
@@ -22,9 +22,9 @@
 Module Modal.
 (*end hide *)
 (** ** Defining an embedding of modal logic in Coq *)
-(** %\emph{The Coq code in this subsection is directly from the Benzmuller and Paleo Paper~\cite{benzmuller}.}% *)
+(** %\emph{The Coq code in this subsection is directly from the Benzmuller and Paleo Paper~\cite{benzmuller}, the comments have been added.}% *)
 
-(** It is worth noting that to check the trustworthiness of any lemma using the techniques from the Benzmuller and Paleo paper, it is necessary to check the trustworthiness of the user code defining the modal logic embedding (below), and especially the impact of any adaptations to their original technique such as the adaptation to bi-modal logic later in this chapter. *)
+(** It is worth noting that to check the trustworthiness of any theorem using the techniques from the Benzmuller and Paleo paper, it is necessary to check the trustworthiness of the user code defining the modal logic embedding (below), and especially the impact of any adaptations to their original technique such as the adaptation to bi-modal logic later in this chapter. *)
 
 
 (** *** Worlds, objects, modal propositions and the accessibility relation *)
@@ -35,7 +35,7 @@ Parameter u: Type. (** Here we declare/assume a type [u] as the type for objects
 
 Definition o := i -> Prop. (** Here we define [o] to be the type which takes a world and gives a meta-language proposition. [o] then, is the type of modal propositions, which when given a world are then a meta-language proposition. %\par% *)
 
-(** The indended usage is to have a modal formula, say [p] (with type [o]), with the meaning of [(p w)] to be that the modal proposition represented by [p] is true at world [w] (where [w] is a world, with type [i]). %\par% *)
+(** The intended usage is to have a modal formula, say [p] (with type [o]), with the meaning of [(p w)] to be that the modal proposition represented by [p] is true at world [w] (where [w] is a world, with type [i]). %\par% *)
 
 (** The meanings of the definitions of [i], [u] and [o] are fixed further by their usage in the next definitions. It is also worth noting that the reason why undescriptive names are used is because [i], [u] and [o] will need to be written often and it would be inconvenient if their names were long. *)
 
@@ -45,7 +45,7 @@ Parameter r: i -> i -> Prop.  (** Here we declare/assume a function/predicate of
 
 (** *** Connectives *)
 
-(** Here the lifted connecties are defined. Each lifted connective (except [mnot]) takes two modal propositions (with type [o]) and a world (with type [i]) and gives a `meta-language' proposition (with the standard Coq type [Prop]) reflecting the meaning of the connective. *)
+(** Here the lifted connectives are defined. Each lifted connective (except [mnot]) takes two modal propositions (with type [o]) and a world (with type [i]) and gives a `meta-language' proposition (with the standard Coq type [Prop]) reflecting the meaning of the connective. *)
 
 Definition mnot (p: o)(w: i) := ~ (p w).
 Definition mand (p q:o)(w: i) := (p w) /\ (q w).
@@ -115,7 +115,7 @@ Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
 
 (** [dia] is defined similarly as a function which takes a modal proposition and a world, and returns a `meta-level' proposition stating that there exists a world related to that world, where the modal proposition is true. *)
 
-(** Since the type of both [dia] and [box] when applied to a modal proposition, is [i -> Prop] thus [box p] and [dia p] are of type [o] (the type of modal propositions). *)
+(** Since the type of both [dia] and [box] when applied to a modal proposition, is [i -> Prop], then [box p] and [dia p] are of type [o] (the type of modal propositions). *)
 
 (** *** Validity *)
 Definition V (p: o) := forall w, p w. (** Here the definition of validity for a modal formula is given. [V] is defined as a function/predicate that takes a modal proposition and gives a `meta-level' proposition stating that the given modal proposition is true at all worlds. So for any modal proposition [p], at the meta-level [V p] is true iff [p] is valid. *)
@@ -128,10 +128,10 @@ Notation "[ p ]" := (V p). (** Here a notation is defined so that we can write "
 
 (** ** Increasing the usability by defining tactics *)
 
-(** The tactics defined below allow proofs to be carried out without dealing directly with the intricate aspects of the definitions of the embedding. Instead, the familiar technique of working with introduction and elimination rules can be used. Only some new tactics are needed, as the standard Coq tactics work fine with many of the defined notions. Below a brief example of each new tactic is given, for a comprehensive explanation of these definitions see section 3 of the Benzmuller and Paleo paper%~\cite[p.~5]{benzmuller}%. *)
+(** The tactics defined below allow proofs to be carried out without dealing directly with the intricate aspects of the definitions of the embedding. Instead, the familiar technique of working with introduction and elimination rules can be used. Only some new tactics are needed, as the standard Coq tactics work fine with many of the defined notions. Below a brief example of each new tactic is given; for a comprehensive explanation of these definitions see section 3 of the Benzmuller and Paleo paper%~\cite[p.~5]{benzmuller}%. *)
 
 
-(** *** Modal Validity *)
+(** *** Modal validity *)
 Ltac mv := match goal with [|- (V _)] => intro end.
 
 (** Here the [mv] tactic is defined such that when the proof state requires proving that a modal formula is valid, applying [mv] will introduce a new arbitrary world and the goal of the proof state will then be to prove that the modal formula is true at the new world. *)
@@ -377,7 +377,7 @@ Qed.
 
 (** Tentative *) Theorem Third_Law : [mforall A, m~ (dia (K A)) m-> (dia (K (m~ A)))].
 Proof.
-Abort. (** A proof is not given here, further work may resolve whether this is provable in the future. *)
+Abort. (** A proof is not given here, further work may resolve whether this is provable. *)
 
 (* begin hide *)
 End BiModal.

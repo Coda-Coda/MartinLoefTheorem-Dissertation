@@ -177,7 +177,7 @@ Qed.
 Axiom diaT : forall A, True (A ⇒ (◊ A)).
 ] *)
 
-(** This axiom claims that for all propositions in CS4 and intuitionistic logic, that if they are true then they can be known. This seems reasonable, however at the same time it also seems very close to saying there are no undecidable propositions (if everything that is true can be known then surely nothing is unknowable). So perhaps the axiom is stating too much. *)
+(** This axiom claims that for all propositions in CS4 and intuitionistic logic, if they are true then they can be known. This seems reasonable, however at the same time it also seems very close to saying there are no undecidable propositions (if everything that is true can be known then surely nothing is unknowable). So perhaps the axiom is stating too much. *)
 
 (** %\vspace{1em}% *)
 
@@ -223,13 +223,13 @@ Proof. intro. apply diaT. Qed.
 
 (** * Extending to Martin-%\Loef{}%'s Theorem *)
 
-(** In order to prove Martin-%\Loef{}%'s Theorem, two additional axioms are required. They are Fact 2 and Fact 4 from Martin-%\Loef{}%'s argument as discussed in chapter 2 and in the Logicomp 301 slides%~\cite{crisslides}%. *)
+(** In order to prove Martin-%\Loef{}%'s Theorem, two additional axioms are required. They are similar to Fact 2 and Fact 4 from Martin-%\Loef{}%'s argument as discussed in chapter 2 and in the Logicomp 301 slides%~\cite{crisslides}%. *)
 
-(** Fact 2 states: %\emph{"If $A$ can be known to be true and $B$ can be known to be true, then $A\wedge B$ can be known to be true."}% It can be formalised as given below. *)
+(** Fact 2 states: %\emph{"If $A$ can be known to be true and $B$ can be known to be true, then $A\wedge B$ can be known to be true."}% It turns out that slightly altered versions of Fact 2 and Fact 4 are required. The axioms needed are more basic. Informally, for Fact 2 we instead have %\emph{"If $A$ is true and $B$ is true, then $A\wedge B$ is true."}%. *)
 
 Axiom fact_2 : forall A B, (True A /\ True B) <-> True (A ∧ B).
 
-(** Fact 4 states: %\emph{"One and the same proposition $A$ cannot both be known to be true and  be known to be false."}% It can be formalised as given below. *)
+(** Fact 4 states: %\emph{"One and the same proposition $A$ cannot both be known to be true and  be known to be false."}%. Instead we have %\emph{%"For any proposition [A], it is not the case that [A ∧ (¬ A)] is true."%}%. *)
 
 Axiom fact_4 : forall A, ~ (True (A ∧ (¬ A))).
 

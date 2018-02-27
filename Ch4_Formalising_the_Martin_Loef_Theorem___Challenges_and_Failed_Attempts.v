@@ -10,7 +10,7 @@
 
 (** We can best demonstrate this by noting that neither [( ~ ~ q -> q)] nor [ ~ ( ~ ~ q -> q)] are intuitionistically provable. Thus there is a formula for which neither it nor its negation is intuitionistically provable. *)
 
-(** Below, further details are given to show this is the case, and then the completeness theorems for intuitionistic logic are discussed in relation to this. We find that the intuitionistic completeness theorems do not mean that there don't exist formulae with neither a proof of themselves nor their negation, so in some sense these theorems are weaker than their classical counterparts. *)
+(** Below, further details are given to show this is the case, and then the completeness theorems for intuitionistic logic are discussed in relation to this. We find that the intuitionistic completeness theorems do not mean that there don't exist formulae with neither a proof of themselves nor of their negation, so in some sense these theorems are weaker than their classical counterparts. *)
 
 (** ** Example: double negation elimination *)
 
@@ -68,19 +68,30 @@ Qed.
 
 (** ** Completeness theorems *)
 
-(** Completeness is a notion which in some sense does differ in meaning between classical%~\cite[p.~46]{completenessGodel, completenessBritannica, completenessDirk}% and intuitionistic%~\cite[p.~171]{intuitionisticLogicStanford, completenessDirk}% contexts, although it also retains its meaning in many ways between the contexts. One example of a difference is that in classical logic if some system is complete, then we can conclude that for every formula either it or its negation is provable. This however, is not the definition of completeness, but rather a consequence of it in classical contexts. For instance, in classical propositional logic, the fact that it is complete is generally defined to mean that every formula that is valid semantically is provable. For classical logic this then means that if we take an arbitrary formula, we can show that either it or its negation must be provable as follows, the key being the fact that $p \vee \lnot p$ is valid in classical logic for all propositions. %\\% *)
+(** Completeness is a notion which in some sense does differ in meaning between classical%~\cite[p.~46]{completenessGodel, completenessBritannica, completenessDirk}% and intuitionistic%~\cite[p.~171]{intuitionisticLogicStanford, completenessDirk}% contexts, although it also retains many aspects of its meaning. One example of a difference is that in classical logic if some system is complete, then we can conclude that for every formula either it or its negation is provable. This however, is not the definition of completeness, but rather a consequence of it in classical contexts. For instance, in classical propositional logic, the fact that it is complete is generally defined to mean that every formula that is valid semantically is provable. For classical logic this then means that if we take an arbitrary formula, we can show that either it or its negation must be provable as follows, the key being the fact that $p \vee \lnot p$ is valid in classical logic for all propositions. %\\% *)
 
 (** Consider classical propositional logic, with semantics and provability (or deduction) defined such as in the Stanford Encyclopedia of Philosophy article on classical logic%~\cite{sep-logic-classical}%. %\\%
-Here, if a formula [p] is valid semantically this is denoted by $\vDash p$. If a formula [q] is provable this is denoted $\vdash q$.
+Here, if a formula [p] is valid semantically this is denoted by $\vDash p$. If a formula [q] is provable this is denoted $\vdash q$. *)
 
-%
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\linewidth]{proof2}
-\end{figure}
-%
+(** %\vspace{1em}%
+Classical propositional logic is complete, so every valid formula is provable, if $\vDash p$ then $\vdash p$.
+%\begin{enumerate} \setlength{\itemsep}{0pt} \setlength{\parskip}{0pt}%
+  %\item% Let $p$ be an arbitrary propositional formula.
+  %\item% [p \/ ~p] is valid, $\vDash$ [(p \/ ~p)]
+  %\item% Thus, by the definition of satisfaction, $\vDash$ [p] or $\vDash$ [~p]
+  %\item% Suppose $\vDash$ [p]
+     %\vspace{-0.5\topsep} \begin{enumerate} \setlength{\itemsep}{0pt} \setlength{\parskip}{0pt}%
+     %\item[a.]% Then, by completeness we have that $\vdash$ [p] so [p] is provable. We are done. (Either [p] or [~p] is provable.)
+     %\end{enumerate}%
+  %\item% Suppose $\vDash$ [~p]
+     %\vspace{-0.5\topsep} \begin{enumerate} \setlength{\itemsep}{0pt} \setlength{\parskip}{0pt}%
+     %\item[a.]% Then, by completeness we have that $\vdash$ [~p] so [~p] is provable. We are done. (Either [p] or [~p] is provable.)
+     %\end{enumerate}%
+  %\item% Therefore either [p] or [~p] is provable.
+%\end{enumerate}%
+ *)
 
-We see here that completeness for classical logic implies that for every $p$, either $p$ or $ \lnot p$ is provable.
+(** We see here that completeness for classical logic implies that for every $p$, either $p$ or $ \lnot p$ is provable.
 For intuitionistic logic however, since we relied on $p \vee \lnot p$ as being valid in step 2 the above reasoning would not work since $p \vee \lnot p$ is not valid in intuitionistic logic. %\\% 
 Clarifying this was helpful in the process of gaining a greater understanding of the key notions of the Martin-%\Loef{}% Theorem.
 
@@ -168,7 +179,7 @@ Qed.
 Require Import Setoid.
 (* end hide *)
 
-(** Now we can show that [absolutely_undecidable p] is equivalent to [~ (p \/ ~ p)]. This is not necessarily a problem, as it may only be showing that [absolutely_undecidable p] is false (since [~ (p \/ ~ p)] is false). But of concern is the simplicity of the proof which highlights that [absolutely_undecidable p] may have a similar _meaning_ to [~ (p \/ ~ p)]. This would seem to be an oversimplification of the intended meaning of the notion `absolutely undecidable'. *)
+(** Now we can show that [absolutely_undecidable p] is equivalent to [~ (p \/ ~ p)]. This is not necessarily a problem, as it may only be showing that [absolutely_undecidable p] is false (since [~ (p \/ ~ p)] is false). But of concern is the simplicity of the proof, which highlights that [absolutely_undecidable p] may have a similar _meaning_ to [~ (p \/ ~ p)]. This would seem to be an oversimplification of the intended meaning of the notion `absolutely undecidable'. *)
 
 Lemma absolutely_undecidable_is_oversimplified : 
   forall p, absolutely_undecidable p <-> ~ (p \/ ~ p).

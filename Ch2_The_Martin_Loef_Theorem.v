@@ -4,7 +4,7 @@
 
 (** The Martin-%\Loef{}% Theorem is introduced in the paper Verificationism Then and Now (1995, 2013)%\cite{MartinLoef1995, ml}%. The conclusion of the paper is that, on the intuitionistic conception, there are no absolutely undecidable propositions. %\\%
 A large portion of the paper involves carefully unpacking the notions of a proposition, truth, falsity, knowledge and possibility. %\\%
-The purpose of this dissertation and the ongoing work in parrallel to it is to formalise the proof outlined by Martin-%\Loef{}% in some sound and complete logical system as well as in a proof assistant such as Coq. *)
+The purpose of this dissertation and the ongoing work in parallel to it is to formalise the proof outlined by Martin-%\Loef{}% in some sound and complete logical system as well as in a proof assistant such as Coq. *)
 
 (** * Unpacking the key notions *)
 
@@ -19,7 +19,7 @@ The purpose of this dissertation and the ongoing work in parrallel to it is to f
 (** ** Knowledge *)
 (** A proposition can be known to be true if there exists a proof for it. *)
 (** ** Possibility *)
-(** The `if there exists' in the definition of knowledge referes to an intuitionistic understanding of these words. That is, possibility in principle. For example, in order for a statement involving a large number to be known to be true, there need not be a proof detailing every step of that proof - rather it would be sufficient to demonstrate the existence of an algorithm that would, in principle, produce the required step by step proof. *)
+(** The `if there exists' in the definition of knowledge refers to an intuitionistic understanding of these words. That is, possibility in principle. For example, in order for a statement involving a large number to be known to be true, there need not be a proof detailing every step of that proof - rather it would be sufficient to demonstrate the existence of an algorithm that would, in principle, produce the required step by step proof. *)
 
 (** * Unpacking the Martin-%\Loef{}% Theorem *)
 
@@ -55,7 +55,7 @@ but he found Turing's argument \alert{inconclusive}:
 
 % *)
 
-(** ** Does objective mathematics coincide with subjective mathematics? *)
+
 (** %
 \Godel{}'s answer (Gibbs lecture ``Some Basic Theorems on the Foundations of Mathematics and their Implications'',~\cite{Godel51}) based on his incompleteness theorem is a \alert{disjunctive conclusion}:\medskip
 
@@ -125,7 +125,7 @@ methods currently not yet discovered.}
 {\bf Fact~1.} [Unknowability of truth entails knowability of falsity] {\em  If the proposition $A$ cannot be known to be true, then $A$ can be known to be false.}
 \\[2ex]
 
-{\it Proof}: To prove that $A$ can be known to be false we have to show that $\neg A = A \rightarrow (0=1)$ can be known to be true. To this aim we need an algorithm ${\mathcal B}$ to convert any proof of $A$ into a proof of $(0=1)$. The algorithm ${\mathcal B}$  returns anything output by  the algorithm  ${\mathcal A}$ provided by the hypothesis, i.e.~noting: vacuously, the implication holds.\\
+{\it Proof}: To prove that $A$ can be known to be false we have to show that $\neg A$, i.e. $A \rightarrow (0=1)$ can be known to be true. To this aim we need an algorithm ${\mathcal B}$ to convert any proof of $A$ into a proof of $(0=1)$. The algorithm ${\mathcal B}$  returns anything output by  the algorithm  ${\mathcal A}$ provided by the hypothesis, i.e.~noting: vacuously, the implication holds.\\
 
 Comment: The proof constructively produces positive information  from negative information. \\
 % *)
@@ -148,7 +148,7 @@ Comment: The proof constructively produces positive information  from negative i
 \\[2ex]
 
 
-{\it Proof}: By hypothesis we have a proof demonstrating $A$ and a proof demonstrating $\neg A= A \rightarrow (0=1)$. Then we can demonstrate $(0=1)$, contradicting Fact~3.
+{\it Proof}: By hypothesis we have a proof demonstrating $A$ and a proof demonstrating $\neg A$, i.e. $A \rightarrow (0=1)$. Then we can demonstrate $(0=1)$, contradicting Fact~3.
 
 
 \medskip

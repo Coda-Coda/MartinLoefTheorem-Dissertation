@@ -5,7 +5,7 @@
 (** * Interactively viewing proofs *)
 (** %
 \urlstyle{same}
-The entire text of this dissertation is comprised of Coq source files which include all the proofs given. The reader is recommended to download CoqIde from \begin{center}\url{https://coq.inria.fr/download}\end{center} and use the Coq source files available from \begin{center}\url{https://github.com/Coda-Coda/MartinLoefTheorem-Dissertation}\end{center} This will allow the reader to step through any of the proofs in this dissertation interactively.
+The entire text of this dissertation is comprised of Coq source files which include all the proofs given. The reader is recommended to download CoqIde from \begin{center}\url{https://coq.inria.fr/download}\end{center} and use the Coq source files available from \begin{center}\url{https://github.com/Coda-Coda/MartinLoefTheorem-Dissertation/releases/tag/submission}\end{center} This will allow the reader to step through any of the proofs in this dissertation interactively.
 % *)
 
 (** * A typical Coq Proof *)
@@ -15,7 +15,7 @@ Inductive boolean :=
  | true
  | false.
 
-(** Above a datatype, [boolean], is defined which can have either of the values listed. Datatype definitions of this kind will be used to define propositional or modal formulas as their own type. *)
+(** Above a data type, [boolean], is defined which can have either of the values listed. Data type definitions of this kind will be used to define propositional or modal formulas as their own type. *)
 
 Definition not (x:boolean) : boolean :=
 match x with
@@ -71,7 +71,7 @@ reflexivity.
 Qed.
 
 (** %\item% *)
-(** [exact] will solve a goal that looks exactly like a current hypothesis. *)
+(** [exact] will solve a goal that looks exactly like a current hypothesis. In the example below, [p] is introduced as the hypothesis [H] and then the goal [p] can be solved with the tactic [exact H]. *)
 
 Example exact_example : forall p, p -> p.
 Proof.
@@ -114,7 +114,7 @@ exact example1_axiom.
 Qed.
 
 (** %\item% *)
-(** [apply] will apply a lemma to the current goal, as shown below. *)
+(** [apply] will apply a theorem to the current goal, as shown below. *)
 
 Example apply_example : forall p q, ~ p -> p \/ ~ q -> ~ q.
 Proof.
@@ -128,7 +128,7 @@ Qed.
 (** * Confidence in different types of Coq proofs *)
 
 (** It is important to note that different ways of using Coq have important implications for how trustworthy the resulting proofs are and for which sections of code need to be checked to be trustworthy before trusting a particular proof. %\par%
-When Coq is used without any additional assumptions added and for its regular usage we can be very confident of the system's consistency and the trustworthiness of proofs. In general, with a lemma for which the Coq definitions used in the lemma are fully understood, the user code leading to a proof of such a lemma a would not need to be manually checked carefully to be trustworthy. %\par%
+When Coq is used without adding any additional assumptions and for its regular usage we can be very confident of the system's consistency and the trustworthiness of proofs. In general, if the Coq definitions used in a theorem are fully understood, the user code leading to a proof of it would not need to be manually checked to be trustworthy. %\par%
 In contrast, when the code leading to a proof makes use of assumptions then it is important to carefully check that the assumptions do not lead to unintended results. For example, consider the statement below. *)
 
 Parameter i : Type.
@@ -137,7 +137,7 @@ Parameter i : Type.
 For example, the following use of [Parameter] would make Coq's logic inconsistent: %\par%
 [Parameter x: False.] %\par%
 This assumes the existence of [x] of type [False], which essentially assumes the existence of a proof of [False] (which should be impossible). %\par%
-A second consideration is whether the proof involves an embedding and `lifted connectives', such as is the case with the Modal Logic formalisation in a later chapter. This technically falls under the idea of being sure that "the Coq definitions used in the lemma are fully understood". Essentially, if an entire logical system has been newly defined, then any lemmas proven in such a system are only as trustworthy as the definitions given in the user code.
+A second consideration is whether the proof involves an embedding and `lifted connectives', such as is the case with the Modal Logic formalisation in a later chapter. This technically falls under the idea of being sure that "the Coq definitions used in the theorem are fully understood". Essentially, if an entire logical system has been newly defined, then any theorems proven in such a system are only as trustworthy as the definitions given in the user code.
  %\par%
 These considerations are relevant to aspects of the formalisations in this dissertation, and also relevant are the standard considerations outlined on a Coq FAQ site%~\cite{coqFAQtrust}% which include trusting the integrity of the system Coq is running on and trusting the theory behind Coq. 
 *)
