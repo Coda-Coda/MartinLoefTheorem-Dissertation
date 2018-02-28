@@ -5,7 +5,7 @@
 (** * Interactively viewing proofs *)
 (** %
 \urlstyle{same}
-The entire text of this dissertation is comprised of Coq source files which include all the proofs given. The reader is recommended to download CoqIde from \begin{center}\url{https://coq.inria.fr/download}\end{center} and use the Coq source files available from \begin{center}\url{https://github.com/Coda-Coda/MartinLoefTheorem-Dissertation/releases/tag/submission}\end{center} This will allow the reader to step through any of the proofs in this dissertation interactively.
+The entire text of this dissertation is comprised of Coq source files which include all the proofs given. The reader is recommended to download CoqIde from \begin{center}\url{https://coq.inria.fr/download}\end{center} and use the Coq source files available from \begin{center}\url{https://github.com/Coda-Coda/MartinLoefTheorem-Dissertation/releases/tag/cdmtcs}\end{center} This will allow the reader to step through any of the proofs in this dissertation interactively.
 % *)
 
 (** * A typical Coq Proof *)
