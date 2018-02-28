@@ -8,7 +8,7 @@ The purpose of this dissertation and the ongoing work in parallel to it is to fo
 
 (** * Unpacking the key notions *)
 
-(** For a full treatment of the key notions in the Martin %\Loef{}% Theorem see the paper Verificationism Then and Now%~\cite{ml}%. Here an overview is given. *)
+(** For a full treatment of the key notions in the Martin-%\Loef{}% Theorem see the paper Verificationism Then and Now%~\cite{ml}%. Here an overview is given. *)
 
 (** ** Proposition *)
 (** A proposition is defined by its introduction rules. For example, the proposition $ A \vee{} B $ gets its meaning from that the introduction rule for $ \vee{} $ requires either a proof for $ A $ or a proof for $ B $ in order to have a proof for $ A \vee{} B $. *)

@@ -146,7 +146,7 @@ Clarifying this was helpful in the process of gaining a greater understanding of
 (** The Martin-%\Loef{}% theorem considers all notions with regards to "the intuitionistic conception"%~\cite[p.~4]{ml}% and so it seems plausible that formalising the theorem in a way which works solely with intuitionistic proofs might best capture the ideas in Martin-%\Loef{}%'s proof. Coq's core logic itself is intuitionistic and embodies many of the notions expressed in relation to the Martin-%\Loef{}% theorem. This section explores two failed attempts at using Coq's default intuitionistic logic to formalise key notions of the Martin-%\Loef{}% Theorem. *)
 
 (** ** A failed Coq formalisation that oversimplifies the notion `undecidable' *)
-(** In Martin %\Loef{}%'s paper%~\cite{ml}%, the conclusion is that there are no absolutely undecidable propositions, on the intuitionistic interpretation. A key step in formalising the theorem is to adequately represent the statement of the conclusion formally. *)
+(** In Martin-%\Loef{}%'s paper%~\cite{ml}%, the conclusion is that there are no absolutely undecidable propositions, on the intuitionistic interpretation. A key step in formalising the theorem is to adequately represent the statement of the conclusion formally. *)
 
 
 (** *** A possible definition of `absolutely undecidable': *)
